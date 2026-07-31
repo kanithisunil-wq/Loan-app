@@ -33,6 +33,12 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Loan Management API running on port ${PORT}`);
   testConnection();
-}
+},
+// Add this near your other routes in server.js
+app.get('/', (req, res) => {
+  res.send('API is running successfully!');
+})
+
+
 );
 
