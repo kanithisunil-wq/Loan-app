@@ -19,6 +19,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Serve the static frontend (multi-page app) if present alongside backend/
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
+// Root Route (Homepage response)
+app.get('/', (req, res) => {
+  res.send('Backend Server is Running!');
+});
+
+// API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/transactions', transactionRoutes);
@@ -29,17 +35,9 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 // Fallback 404 for unknown API routes
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found.' }));
 
+// Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Loan Management API running on port ${PORT}`);
   testConnection();
-},
-// Add this near your other routes in server.js
-app.get('/', (req, res) => {
-  res.send('API is running successfully!');
-},
-app.get('/', (req, res) => {
-  res.send('Backend Server is Running!');
-})
-));
-
+});
