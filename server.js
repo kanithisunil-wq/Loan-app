@@ -37,8 +37,9 @@ app.listen(PORT, () => {
 // Add this near your other routes in server.js
 app.get('/', (req, res) => {
   res.send('API is running successfully!');
+},
+app.get('/', (req, res) => {
+  res.send('Backend Server is Running!');
 })
-
-
-);
+));
 
